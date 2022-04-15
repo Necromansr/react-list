@@ -485,7 +485,7 @@ module.exports = class ReactList extends Component {
     if (current > max) return this.setScroll(max);
   }
 
-  getVisibleRange() {
+  getVisibleRange(space = 0) {
     const { from, size } = this.state;
     const { start, end } = this.getStartAndEnd(0);
     const cache = {};
@@ -493,7 +493,7 @@ module.exports = class ReactList extends Component {
     for (let i = from; i < from + size; ++i) {
       const itemStart = this.getSpaceBefore(i, cache);
       const itemEnd = itemStart + this.getSizeOfItem(i);
-      if (first == null && itemEnd > start) first = i;
+      if (first == null && itemEnd - space > start) first = i;
       if (first != null && itemStart < end) last = i;
     }
     return [first, last];

@@ -612,7 +612,7 @@
       }
     }, {
       key: "getVisibleRange",
-      value: function getVisibleRange() {
+      value: function getVisibleRange(space = 0) {
         var _this$state4 = this.state,
             from = _this$state4.from,
             size = _this$state4.size;
@@ -627,7 +627,7 @@
         for (var i = from; i < from + size; ++i) {
           var itemStart = this.getSpaceBefore(i, cache);
           var itemEnd = itemStart + this.getSizeOfItem(i);
-          if (first == null && itemEnd > start) first = i;
+          if (first == null && itemEnd - space > start) first = i;
           if (first != null && itemStart < end) last = i;
         }
 
